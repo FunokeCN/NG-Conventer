@@ -1,0 +1,53 @@
+#include<algorithm>
+#include<iostream>
+#include<math.h>
+#include <unistd.h>
+#include<string>
+
+using namespace std;
+
+int main()
+{
+
+    //api示例：{"id":288,"song_id":1028288,"name":"swag jazz","artist_id":51398,"artist_name":"Jayuff","size":"6.46","disabled":0,"created_at":"2022-05-20T02:53:49.000000Z","updated_at":"2022-05-20T02:53:49.000000Z","download_url":"https:\/\/ng.geometrydashchinese.com\/api\/1028288\/download"} 
+    printf("本小工具由Funoke制作，欢迎访问B站：https://space.bilibili.com/202617340\n请先打开网站获取歌曲信息（网站由渣渣提供）：\n“https://ng.geometrydashchinese.com/api/【歌曲id】/info”获取内容\n请粘贴内容：\n");
+
+    string str;
+
+    getline(cin, str);
+
+    //简化字符-开始
+
+    int ka = 9 + (str.find("song_id"));
+    int kb = -2 + (str.find("name"));
+    int kc = 7 + (str.find("name"));
+    int kd = -3 + (str.find("artist_id"));
+
+    string str1 = str.substr(ka, kb-ka);
+    string str2 = str.substr(kc, kd-kc);
+
+
+    //调试用printf("%d and %d and %d and %d", ka, kb, kc, kd);
+
+    
+    int num = atoi(str1.c_str());
+    int numb = 1000 * (floor(num / 1000));
+
+    system("cls");
+
+    //调试用cout<<str1<<endl;
+    //调试用cout << str2 << endl;
+
+    //处理字符-开始 
+    str2.erase(std::remove(str2.begin(), str2.end(), '?'), str2.end());
+    str2.erase(std::remove(str2.begin(), str2.end(), '('), str2.end());
+    str2.erase(std::remove(str2.begin(), str2.end(), ')'), str2.end());
+    replace(str2.begin(), str2.end(), ' ', '-');
+    //处理字符-结束    
+
+
+            printf("解析下载链接：\nhttps://audio-download.ngfiles.com/%d/%d_%s.mp3?f0000000000",numb,num,str2.c_str()); 
+
+    return 0;
+
+}
