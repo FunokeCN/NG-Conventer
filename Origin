@@ -1,0 +1,79 @@
+#include<algorithm>
+#include<string>
+#include<iostream>
+#include<cmath>
+#include<cstdio>
+#include<math.h>
+#include<stdio.h>
+#include<string.h>
+#include <unistd.h>
+#include<algorithm>
+
+using namespace std;
+int main()
+{
+        printf("请输入歌曲名字：");
+        
+         string str;
+ 
+         getline(cin,str);   
+         
+//处理字符-开始 
+	str.erase(std::remove(str.begin(), str.end(), '?'), str.end());
+	str.erase(std::remove(str.begin(), str.end(), '('), str.end());
+	str.erase(std::remove(str.begin(), str.end(), ')'), str.end());
+	replace(str.begin(), str.end(), ' ', '-');
+//处理字符-结束    
+         
+        printf("请输入歌曲id：");
+		int a;
+		cin>>a; 
+		int c = 1000*(floor(a/1000));
+        printf("你的下载链接：https://audio.ngfiles.com/%d/%d_%s.mp3?f0000000000",c,a,str.c_str()); 
+ 
+        return 0;
+ 
+}
+
+
+//失败代码大赏 
+
+/*
+哈哈 
+   int a;
+   char str; 
+   printf("请输入歌曲id："); 
+   scanf("%d;%s",&a,&str);
+   int c = 1000*(floor(a/1000));
+
+   
+   //str.resize(100); //需要预先分配空间
+
+    //scanf("%s[^\n]",str); //读到'\n'结束读取
+    printf("%s",str);
+   
+   
+   
+   
+    //system("cls");
+    printf("你的下载链接：https://audio.ngfiles.com/%d/%d_%s.mp3?f0000000000",c,a,str); 
+    //例子：https://audio.ngfiles.com/895000/895131_-Hanshoku-ki.mp3?f1575020107
+    
+    
+    
+哈哈 
+         string::iterator it;     //指向string类的迭代器。你可以理解为指针
+	for (it = str.begin(); it != str.end(); it++)
+	{
+		if (*it == '?')
+		{
+			str.erase(it);          //删除it处的一个字符
+			break;
+		}
+	}
+
+    
+    
+    
+    
+   */
